@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ct.fse.mobileapp.sim.AirtelSim;
+import com.ct.fse.mobileapp.sim.JIOSim;
 import com.ct.fse.mobileapp.sim.Sim;
 
 /**
@@ -32,8 +33,11 @@ public class App
     	
     	Mobile m2=(Mobile)context.getBean("mobile");
     	System.out.println(m2);
-    	context.getBean("mobile");
-    	context.getBean("mobile");
+    	Mobile m3= (Mobile)context.getBean("mobile");
+    	Sim sim=context.getBean("jio",JIOSim.class);
+    	
+    	m3.setSim(sim);
+    	Mobile m4= (Mobile) context.getBean("mobile");
     	
     }
 }

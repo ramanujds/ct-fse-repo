@@ -1,10 +1,12 @@
 package com.ct.fse.mobileapp.sim;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component("airtel")
-@Lazy
+@Scope("prototype")
+//@Lazy
 public class AirtelSim implements Sim {
 	
 	public AirtelSim() {

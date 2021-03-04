@@ -8,7 +8,7 @@ import com.ct.springboot.jdbc.model.Trainee;
 public interface TraineeRepo {
 	
 	public Trainee addTrainee(Trainee trainee);
-	public Optional<Trainee> getTraineeById(int traineeId);
+	public Trainee getTraineeById(int traineeId);
 	public boolean deleteTraineeById(int traineeId);
 	public List<Trainee> getAllTrainees();
 	

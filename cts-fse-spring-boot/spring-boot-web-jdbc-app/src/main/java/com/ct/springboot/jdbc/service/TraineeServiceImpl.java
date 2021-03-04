@@ -23,7 +23,7 @@ public class TraineeServiceImpl implements TraineeService {
 	@Override
 	public Trainee getTraineeById(int traineeId) {
 		// TODO Auto-generated method stub
-		return repo.getTraineeById(traineeId).orElse(null);
+		return repo.getTraineeById(traineeId);
 	}
 
 	@Override

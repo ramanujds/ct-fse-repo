@@ -35,7 +35,7 @@ public class TraineeServiceImpl implements TraineeService {
 	@Override
 	public List<Trainee> getAllTrainees() {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.getAllTrainees();
 	}
 
 }

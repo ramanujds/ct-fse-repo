@@ -1,5 +1,7 @@
 package com.ct.springboot.jdbc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,12 @@ public class TraineeController {
 		}
 	}
 	
+	@GetMapping("/showall")
+	public String showAllTrainees(Model m) {
+		List<Trainee> allTrainees=service.getAllTrainees();
+		m.addAttribute("trainees", allTrainees);
+		return "show-all-trainees.jsp";
+	}
 	
 	
 }

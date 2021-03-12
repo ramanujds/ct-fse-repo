@@ -4,14 +4,25 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "trainee_data")
+@NamedQueries({
+		@NamedQuery(name = "getTraineeByEmail", query = "from Trainee where email=:email"),
+		@NamedQuery(name = "getTraineeByName", query = "from Trainee where traineName=:traineeName"),
+		@NamedQuery(name = "findTraineesWithDob", query = "from Trainee where dob between :date1 and :date2")
+		}
+		)
 public class Trainee {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "trainee_id")
 	private long traineeId;
 	@Column(name = "trainee_name", length = 30, nullable = false)
@@ -27,9 +38,9 @@ public class Trainee {
 
 	
 	
-	public Trainee(long traineeId, String traineeName, String email, LocalDate dob) {
+	public Trainee(String traineeName, String email, LocalDate dob) {
 		super();
-		this.traineeId = traineeId;
+		
 		this.traineeName = traineeName;
 		this.email = email;
 		this.dob = dob;

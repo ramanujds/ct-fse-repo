@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.ct.springboot.jpa.model.Project;
 import com.ct.springboot.jpa.model.Trainee;
 
 @Repository
@@ -17,7 +18,9 @@ public class TraineeRepoImpl {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
+	public Project getProject(long projectId) {
+		return entityManager.find(Project.class, projectId);
+	}
 
 	public Trainee saveTrainee(Trainee trainee) {
 		entityManager.persist(trainee);

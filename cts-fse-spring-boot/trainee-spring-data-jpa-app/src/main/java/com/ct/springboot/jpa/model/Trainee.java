@@ -6,11 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "trainee_info")
@@ -28,6 +32,10 @@ public class Trainee {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "project_id")
+//	private Project project;
+	
 	public Trainee() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,6 +49,18 @@ public class Trainee {
 		this.email = email;
 		this.dob = dob;
 	}
+
+
+
+//	public Project getProject() {
+//		return project;
+//	}
+//
+//
+//
+//	public void setProject(Project project) {
+//		this.project = project;
+//	}
 
 
 
@@ -81,8 +101,11 @@ public class Trainee {
 	@Override
 	public String toString() {
 		return "Trainee [traineeId=" + traineeId + ", traineeName=" + traineeName + ", email=" + email + ", dob=" + dob
-				+ "]";
+				+  "]";
 	}
+
+
+
 	
 	
 	

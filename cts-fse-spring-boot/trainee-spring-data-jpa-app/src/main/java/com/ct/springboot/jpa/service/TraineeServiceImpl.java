@@ -39,11 +39,13 @@ public class TraineeServiceImpl implements TraineeService {
 //		trainee.setProject(project);
 //		trainee2.setProject(project);
 		
+		
 //		Trainee trainee=tRepoImpl.getTraineeById(10001L);
 //		Trainee trainee2=tRepoImpl.getTraineeById(10002L);
 //		Project project=tRepoImpl.getProject(501);
 //		trainee.setProject(project);
 //		trainee2.setProject(project);
+		
 //		repo.save(trainee);
 //		repo.save(trainee2);
 		

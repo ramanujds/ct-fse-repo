@@ -1,12 +1,17 @@
 package com.ct.springboot.jpa.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,11 +36,28 @@ public class Trainee {
 	@Column(name = "birth_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Project.class, mappedBy = "trainees")
+	private Set<Project> projects;
+	
+	
+	
 	
 //	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumn(name = "project_id")
 //	private Project project;
 	
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
+
+
+
 	public Trainee() {
 		// TODO Auto-generated constructor stub
 	}

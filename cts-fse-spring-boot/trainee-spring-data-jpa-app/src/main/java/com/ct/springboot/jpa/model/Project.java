@@ -3,11 +3,17 @@ package com.ct.springboot.jpa.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,14 +22,19 @@ public class Project {
 
 	@Id
 	private long projectId;
-	
+	 
 	private String projectTitle;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate stratDate;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@Transient
+	private String projectUpdate;
 	
-	private List<Trainee> trainees=new ArrayList<>();
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "project_trainees_list",  joinColumns = @JoinColumn(name = "trainee_id"), inverseJoinColumns = @JoinColumn(name = "project_id")) 
+	private Set<Trainee> trainees;
 	
 	public Project() {
 		// TODO Auto-generated constructor stub
@@ -38,11 +49,19 @@ public class Project {
 	
 	
 
-	public List<Trainee> getTrainees() {
+	public String getProjectUpdate() {
+		return projectUpdate;
+	}
+
+	public void setProjectUpdate(String projectUpdate) {
+		this.projectUpdate = projectUpdate;
+	}
+
+	public Set<Trainee> getTrainees() {
 		return trainees;
 	}
 
-	public void setTrainees(List<Trainee> trainees) {
+	public void setTrainees(Set<Trainee> trainees) {
 		this.trainees = trainees;
 	}
 

@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ImageUploadController {
 
+	Logger logger=LoggerFactory.getLogger(ImageUploadController.class);
+	
 	final String uploadDir="src/main/resources/static/images";
 	
 	@PostMapping("/upload")
@@ -52,6 +56,8 @@ public class ImageUploadController {
 //		System.out.println(file.getOriginalFilename());
 //		System.out.println(file.getSize());
 		
+		logger.error("File Uploaded");
+		//System.out.println("File Uploaded");
 		return "success.jsp";
 	}
 	

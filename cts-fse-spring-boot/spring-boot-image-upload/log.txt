@@ -1,0 +1,20 @@
+2021-03-30 16:24:12.624  INFO 20184 --- [restartedMain] c.c.s.i.SpringBootImageUploadApplication : Starting SpringBootImageUploadApplication on desktop-ramanuj with PID 20184 (G:\cts-fse-repo\cts-fse-spring-boot\spring-boot-image-upload\target\classes started by raman in G:\cts-fse-repo\cts-fse-spring-boot\spring-boot-image-upload)
+2021-03-30 16:24:12.626 DEBUG 20184 --- [restartedMain] c.c.s.i.SpringBootImageUploadApplication : Running with Spring Boot v2.3.9.RELEASE, Spring v5.2.13.RELEASE
+2021-03-30 16:24:12.627  INFO 20184 --- [restartedMain] c.c.s.i.SpringBootImageUploadApplication : No active profile set, falling back to default profiles: default
+2021-03-30 16:24:13.508  INFO 20184 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8500 (http)
+2021-03-30 16:24:13.517  INFO 20184 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-03-30 16:24:13.518  INFO 20184 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-03-30 16:24:13.680  INFO 20184 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-03-30 16:24:13.694  INFO 20184 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-03-30 16:24:13.695  INFO 20184 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1057 ms
+2021-03-30 16:24:13.904  INFO 20184 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-30 16:24:14.091  INFO 20184 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-30 16:24:14.141  INFO 20184 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8500 (http) with context path ''
+2021-03-30 16:24:14.152  INFO 20184 --- [restartedMain] c.c.s.i.SpringBootImageUploadApplication : Started SpringBootImageUploadApplication in 1.696 seconds (JVM running for 421.424)
+2021-03-30 16:24:14.156  INFO 20184 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-03-30 16:24:38.428  INFO 20184 --- [http-nio-8500-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-30 16:24:38.431  INFO 20184 --- [http-nio-8500-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-03-30 16:24:38.445  INFO 20184 --- [http-nio-8500-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2021-03-30 16:24:38.470 ERROR 20184 --- [http-nio-8500-exec-1] c.c.s.imageupload.ImageUploadController  : File Uploaded
+2021-03-30 17:09:24.858  INFO 20184 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-03-30 17:09:26.243  INFO 20184 --- [RMI TCP Connection(9)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

@@ -66,9 +66,9 @@ public class TraineeServiceImpl implements TraineeService {
 	
 	@Override
 	public Trainee saveTrainee(Trainee trainee) {
-		if(repo.existsById(trainee.getTraineeId())) {
-			return trainee;
-		}
+//		if(repo.existsById(trainee.getTraineeId())) {
+//			return trainee;
+//		}
 		return repo.save(trainee);
 	}
 

@@ -36,8 +36,8 @@ public class Trainee {
 	@Column(name = "birth_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Project.class, mappedBy = "trainees")
-	private Set<Project> projects;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Project.class)
+//	private Project project;
 	
 	
 	
@@ -46,15 +46,15 @@ public class Trainee {
 //	@JoinColumn(name = "project_id")
 //	private Project project;
 	
-	public Set<Project> getProjects() {
-		return projects;
-	}
-
-
-
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
-	}
+//	public Project getProject() {
+//		return project;
+//	}
+//
+//
+//
+//	public void setProject(Project project) {
+//		this.project = project;
+//	}
 
 
 

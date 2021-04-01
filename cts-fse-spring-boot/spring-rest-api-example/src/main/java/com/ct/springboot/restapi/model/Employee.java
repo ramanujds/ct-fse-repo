@@ -11,12 +11,12 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
-@Valid
+
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Size(min = 5)
+	@Size(min = 5, message = "Name must contain atleast 5 characters")
 	private String employeeName;
 	private String email;
 	//@DateTimeFormat(pattern = "yyyy-MM-dd")

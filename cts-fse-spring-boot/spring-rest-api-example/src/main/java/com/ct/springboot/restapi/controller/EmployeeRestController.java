@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class EmployeeRestController {
 
 	@PostMapping("/employees")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public EmployeeDto addEmployee(@RequestBody EmployeeDto emp) {
+	public EmployeeDto addEmployee(@Valid @RequestBody Employee emp) {
 		return service.addEmployee(emp);
 	}
 

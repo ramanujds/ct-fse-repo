@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +14,9 @@ public class EmployeeDto {
 
 	private int id;
 	
-	@Size(min = 5)
+	@NotBlank
+	@NotEmpty
+	@Size(min = 5, max=10, message = "Name must contain 5-10 characters")
 	private String employeeName;
 	private String email;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

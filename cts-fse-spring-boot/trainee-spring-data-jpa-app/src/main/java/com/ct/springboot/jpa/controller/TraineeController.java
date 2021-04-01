@@ -13,49 +13,44 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ct.springboot.jpa.model.Project;
 import com.ct.springboot.jpa.model.Trainee;
 import com.ct.springboot.jpa.repo.ProjectRepo;
+import com.ct.springboot.jpa.service.ProjectService;
 import com.ct.springboot.jpa.service.TraineeService;
-@CrossOrigin
-@Controller
+
+@RestController
+@RequestMapping("/api/trainee-service")
 public class TraineeController {
 
 	@Autowired
 	private TraineeService service;
 	
-	@Autowired
-	private ProjectRepo pRepo;
 	
 	
-	@ResponseBody
-	@PostMapping("/projects")
-	public Project addProject(@RequestBody Project project) {
-		return pRepo.save(project);
+	
+	
+	
+	
+	
+	
+	
+	
+	@PostMapping("/trainees")
+	public Trainee addTraineeAndProject(@RequestBody Trainee trainee) {
+		return service.saveTrainee(trainee);
 	}
 	
 	
 	
 	
-	
-	@PostMapping("/trainees/add")
-	public String addTrainee(@ModelAttribute("trainee") Trainee trainee) {
-		service.saveTrainee(trainee);
-		return "success.jsp";
-	}
-	
-	@GetMapping("/trainees/find")
-	public String getTrainee(@RequestParam long traineeId, Model m) {
-		Trainee trainee=service.getTraineeById(traineeId);
-		m.addAttribute("trainee",trainee);
-		return "show-trainee.jsp";
-	}
 	
 	@GetMapping("/trainees/email/{email}")
-	@ResponseBody
 	public Trainee getTrainee(@PathVariable String email) {
 		Trainee trainee=service.getTraineeByEmail(email);
 		return trainee;

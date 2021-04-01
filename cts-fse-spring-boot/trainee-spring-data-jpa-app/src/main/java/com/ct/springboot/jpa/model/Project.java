@@ -2,6 +2,8 @@ package com.ct.springboot.jpa.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,15 +29,15 @@ public class Project {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate stratDate;
 	
-	@Transient
-	private String projectUpdate;
+//	@Transient
+//	private String projectUpdate;
+//	
 	
 	
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "project_trainees_list",  joinColumns = @JoinColumn(name = "trainee_id"), inverseJoinColumns = @JoinColumn(name = "project_id")) 
-	private Set<Trainee> trainees;
-	
+	@OneToMany(cascade = CascadeType.ALL)
+//	//@JoinTable(name = "project_trainees_list",  joinColumns = @JoinColumn(name = "trainee_id"), inverseJoinColumns = @JoinColumn(name = "project_id")) 
+	private Set<Trainee> trainees=new HashSet<>();
+//	
 	public Project() {
 		// TODO Auto-generated constructor stub
 	}
@@ -49,13 +51,13 @@ public class Project {
 	
 	
 
-	public String getProjectUpdate() {
-		return projectUpdate;
-	}
-
-	public void setProjectUpdate(String projectUpdate) {
-		this.projectUpdate = projectUpdate;
-	}
+//	public String getProjectUpdate() {
+//		return projectUpdate;
+//	}
+//
+//	public void setProjectUpdate(String projectUpdate) {
+//		this.projectUpdate = projectUpdate;
+//	}
 
 	public Set<Trainee> getTrainees() {
 		return trainees;
@@ -92,7 +94,7 @@ public class Project {
 	@Override
 	public String toString() {
 		return "Project [projectId=" + projectId + ", projectTitle=" + projectTitle + ", stratDate=" + stratDate
-				+ ", trainees=" + trainees + "]";
+				+  "]";
 	}
 
 	

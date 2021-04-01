@@ -53,12 +53,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public EmployeeDto addEmployee(EmployeeDto employeeDto) {
+	public EmployeeDto addEmployee(Employee employee) {
 		
-		Employee employee=dtoToEmployee(employeeDto);
+		//Employee employee=dtoToEmployee(employeeDto);
 		
-			if(repo.existsByEmail(employeeDto.getEmail())) {
-				throw new EmployeeAlreadyExistsException("Employee with email ["+employeeDto.getEmail()+"] Already Exists");
+			if(repo.existsByEmail(employee.getEmail())) {
+				throw new EmployeeAlreadyExistsException("Employee with email ["+employee.getEmail()+"] Already Exists");
 			}
 		
 			Employee savedEmployee=repo.save(employee);

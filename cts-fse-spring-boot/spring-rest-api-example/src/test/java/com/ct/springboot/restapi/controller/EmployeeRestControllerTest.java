@@ -1,5 +1,6 @@
 package com.ct.springboot.restapi.controller;
 
+import static org.hamcrest.CoreMatchers.anything;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -51,18 +53,17 @@ class EmployeeRestControllerTest {
 	@Test
 	public void testTraineePostApi() throws Exception {
 		RequestBuilder requestBuilder=MockMvcRequestBuilders.post("/api/employees")
-										.content("{\"id\":1001,\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}")
-										.contentType(MediaType.APPLICATION_JSON);
-										//.accept(MediaType.APPLICATION_JSON);
+										.content("{\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}")
+										.contentType(MediaType.APPLICATION_JSON)
+										.accept(MediaType.APPLICATION_JSON);
 		
 		EmployeeDto empDto=new EmployeeDto("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
-		empDto.setId(1001);
-		Employee emp=new Employee("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10));
-		emp.setId(1001);
-		when(service.addEmployee(emp)).thenReturn(empDto);
+		//empDto.setId(1001);
+		
+		when(service.addEmployee(Mockito.isA(Employee.class))).thenReturn(empDto);
 		mockMvc.perform(requestBuilder)
 								
-						//		.andExpect(content().json("{}"))
+								.andExpect(content().json("{\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}"))
 								.andExpect(status().isCreated())
 								.andReturn();
 		

@@ -47,7 +47,7 @@ public class EmployeeRestController {
 
 	@PostMapping("/employees")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public EmployeeDto addEmployee(@Valid @RequestBody Employee emp) {
+	public EmployeeDto addEmployee(@RequestBody Employee emp) {
 		return service.addEmployee(emp);
 	}
 

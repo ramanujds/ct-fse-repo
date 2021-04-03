@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -42,6 +43,27 @@ class EmployeeRestControllerTest {
 		when(service.getEmployeeById(1001)).thenReturn(emp);
 		MvcResult result=mockMvc.perform(requestBuilder)
 								.andExpect(content().json("{\"id\":1001,\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}"))
+								.andReturn();
+		
+		}
+	
+
+	@Test
+	public void testTraineePostApi() throws Exception {
+		RequestBuilder requestBuilder=MockMvcRequestBuilders.post("/api/employees")
+										.content("{\"id\":1001,\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}")
+										.contentType(MediaType.APPLICATION_JSON);
+										//.accept(MediaType.APPLICATION_JSON);
+		
+		EmployeeDto empDto=new EmployeeDto("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
+		empDto.setId(1001);
+		Employee emp=new Employee("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10));
+		emp.setId(1001);
+		when(service.addEmployee(emp)).thenReturn(empDto);
+		mockMvc.perform(requestBuilder)
+								
+						//		.andExpect(content().json("{}"))
+								.andExpect(status().isCreated())
 								.andReturn();
 		
 		}

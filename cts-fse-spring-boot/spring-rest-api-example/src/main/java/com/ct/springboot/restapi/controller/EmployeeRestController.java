@@ -33,11 +33,13 @@ public class EmployeeRestController {
 	@Autowired
 	EmployeeService service;
 	
+	
+	
 	@PostConstruct
 	public void init() {
 	}
 
-	@GetMapping("/employees/employee-name/{employeeName}/email/{email}")
+	@GetMapping("/employees/employee-name/{employeeName}")
 	public EmployeeDto getEmployee(@PathVariable String employeeName) throws EmployeeNotFoundException {
 	return service.getEmployeeByName(employeeName);
 		

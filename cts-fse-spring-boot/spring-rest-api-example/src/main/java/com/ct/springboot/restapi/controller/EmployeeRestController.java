@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class EmployeeRestController {
 		
 	}
 
-	@PostMapping("/employees")
+	@PostMapping(value="/employees", consumes =  {"application/xml", "application/json"})
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public EmployeeDto addEmployee(@RequestBody Employee emp) {
 		return service.addEmployee(emp);
@@ -73,6 +74,11 @@ public class EmployeeRestController {
 			return new ResponseEntity<EmployeeDto>(empDto, HttpStatus.ACCEPTED);
 		
 		
+	}
+	
+	@GetMapping(value = "/employees", produces = {"application/xml", "application/json"})
+	public List<EmployeeDto> getAllEmployees(){
+		return service.getAllEmployees();
 	}
 	
 

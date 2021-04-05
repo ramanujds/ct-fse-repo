@@ -2,6 +2,8 @@ package com.ct.springboot.restapi.dto;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class ErrorResponseDto {
 	
 	private Date timestamp;

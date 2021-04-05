@@ -8,10 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
-
+@XmlRootElement
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

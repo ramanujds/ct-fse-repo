@@ -24,8 +24,12 @@ import com.ct.springboot.jpa.repo.ProjectRepo;
 import com.ct.springboot.jpa.service.ProjectService;
 import com.ct.springboot.jpa.service.TraineeService;
 
+import ch.qos.logback.classic.Logger;
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/api/trainee-service")
+@Slf4j
 public class TraineeController {
 
 	@Autowired
@@ -52,6 +56,7 @@ public class TraineeController {
 	
 	@GetMapping("/trainees/email/{email}")
 	public Trainee getTrainee(@PathVariable String email) {
+		log.info("Trainees Feched by ID");
 		Trainee trainee=service.getTraineeByEmail(email);
 		return trainee;
 	}

@@ -19,6 +19,9 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Project {
 
@@ -38,67 +41,11 @@ public class Project {
 //	//@JoinTable(name = "project_trainees_list",  joinColumns = @JoinColumn(name = "trainee_id"), inverseJoinColumns = @JoinColumn(name = "project_id")) 
 	private Set<Trainee> trainees=new HashSet<>();
 //	
-	public Project() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Project(long projectId, String projectTitle, LocalDate stratDate) {
-		super();
-		this.projectId = projectId;
-		this.projectTitle = projectTitle;
-		this.stratDate = stratDate;
-	}
-	
-	
-
-//	public String getProjectUpdate() {
-//		return projectUpdate;
-//	}
-//
-//	public void setProjectUpdate(String projectUpdate) {
-//		this.projectUpdate = projectUpdate;
-//	}
 
 	public Set<Trainee> getTrainees() {
+		// TODO Auto-generated method stub
 		return trainees;
 	}
-
-	public void setTrainees(Set<Trainee> trainees) {
-		this.trainees = trainees;
-	}
-
-	public long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
-	}
-
-	public String getProjectTitle() {
-		return projectTitle;
-	}
-
-	public void setProjectTitle(String projectTitle) {
-		this.projectTitle = projectTitle;
-	}
-
-	public LocalDate getStratDate() {
-		return stratDate;
-	}
-
-	public void setStratDate(LocalDate stratDate) {
-		this.stratDate = stratDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Project [projectId=" + projectId + ", projectTitle=" + projectTitle + ", stratDate=" + stratDate
-				+  "]";
-	}
-
-	
-	
 	
 	
 }

@@ -18,14 +18,14 @@ public class TestController {
 		return "Hello World";
 	}
 	
-	@GetMapping("/dummy-trainee")
-	public Trainee getTrainee() {
-		return new Trainee(10211L, "Tushar", "tushar@gmail.com", LocalDate.of(2000, 10, 25));
-	}
-	
-	@GetMapping("/testing")
-	public Trainee testTrainee() {
-		return new Trainee(10001, "Rahul", "rahul@yahoo.com", LocalDate.of(1995, 02, 10));
-	}
-	
+//	@GetMapping("/dummy-trainee")
+//	public Trainee getTrainee() {
+//		return new Trainee(10211L, "Tushar", "tushar@gmail.com", LocalDate.of(2000, 10, 25));
+//	}
+//	
+//	@GetMapping("/testing")
+//	public Trainee testTrainee() {
+//		return new Trainee(10001, "Rahul", "rahul@yahoo.com", LocalDate.of(1995, 02, 10));
+//	}
+//	
 }

@@ -40,7 +40,7 @@ class EmployeeRestControllerTest {
 	@Test
 	public void testTraineeApi() throws Exception {
 		RequestBuilder requestBuilder=MockMvcRequestBuilders.get("/api/employees/id/1001");
-		EmployeeDto emp=new EmployeeDto("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
+		EmployeeDto emp=new EmployeeDto(1,"Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
 		emp.setId(1001);
 		when(service.getEmployeeById(1001)).thenReturn(emp);
 		MvcResult result=mockMvc.perform(requestBuilder)
@@ -57,7 +57,7 @@ class EmployeeRestControllerTest {
 										.contentType(MediaType.APPLICATION_JSON)
 										.accept(MediaType.APPLICATION_JSON);
 		
-		EmployeeDto empDto=new EmployeeDto("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
+		EmployeeDto empDto=new EmployeeDto(1,"Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
 		//empDto.setId(1001);
 		
 		when(service.addEmployee(Mockito.isA(Employee.class))).thenReturn(empDto);

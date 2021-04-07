@@ -21,7 +21,7 @@ public class EmployeeDummyController {
 	@GetMapping("/employee")
 	public Employee getEmployee() {
 		
-		Employee emp=new Employee("Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10));
+		Employee emp=new Employee(101,"Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10));
 		
 		emp.setId(1001);
 		return emp;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.9.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ct.springboot</groupId>
 	<artifactId>spring-boot-data-jpa</artifactId>
@@ -14,8 +15,16 @@
 	<name>trainee-spring-data-jpa-app</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
-	</properties>
+    <java.version>1.8</java.version>
+    <sonar.language>java</sonar.language>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+       <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.jacoco.reportsPaths>${project.build.directory}/jacoco-ut.exec</sonar.jacoco.reportsPaths>
+    <sonar.tests>src/test/java</sonar.tests>
+    <sonar.projectKey>sonar-test</sonar.projectKey>
+    <sonar.host.url>http://localhost:9000</sonar.host.url>
+</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -26,27 +35,32 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-<dependency>
-    <groupId>org.apache.tomcat</groupId>
-    <artifactId>tomcat-jasper</artifactId>
-    <version>9.0.41</version>
-</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>9.0.41</version>
+		</dependency>
 
- <dependency>
-      <groupId>javax.servlet.jsp.jstl</groupId>
-      <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-      <version>1.2.1</version>
-    </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,10 +84,44 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.6.0.1398</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+		
+	<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.1</version>
+    <executions>
+    <execution>
+    <id>default-prepare-agent</id>
+    <goals>
+        <goal>prepare-agent</goal>
+    </goals>
+    <configuration>
+        <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
+    </configuration>
+</execution>
+<execution>
+    <id>default-report</id>
+    <goals>
+        <goal>report</goal>
+    </goals>
+    <configuration>
+        <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
+        <outputEncoding>UTF-8</outputEncoding>
+        <outputDirectory>${project.build.directory}</outputDirectory>
+    </configuration>
+</execution>
+    </executions>
+</plugin>
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

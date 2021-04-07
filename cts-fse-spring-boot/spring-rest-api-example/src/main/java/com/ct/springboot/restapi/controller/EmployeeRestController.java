@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,10 +29,15 @@ import com.ct.springboot.restapi.exception.EmployeeNotFoundException;
 import com.ct.springboot.restapi.model.Employee;
 import com.ct.springboot.restapi.service.EmployeeService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class EmployeeRestController {
 
+	
+	
 	@Autowired
 	EmployeeService service;
 	
@@ -42,6 +49,7 @@ public class EmployeeRestController {
 
 	@GetMapping("/employees/employee-name/{employeeName}")
 	public EmployeeDto getEmployee(@PathVariable String employeeName) throws EmployeeNotFoundException {
+	log.info("Employee Fetched");
 	return service.getEmployeeByName(employeeName);
 		
 	}

@@ -18,11 +18,16 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 
+@Data
 @Entity
 @Table(name = "trainee_info")
+@AllArgsConstructor
 public class Trainee {
 
 	@Id
@@ -39,97 +44,7 @@ public class Trainee {
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Project.class)
 //	private Project project;
 	
-	
-	
-	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "project_id")
-//	private Project project;
-	
-//	public Project getProject() {
-//		return project;
-//	}
-//
-//
-//
-//	public void setProject(Project project) {
-//		this.project = project;
-//	}
-
-
-
-	public Trainee() {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	
-	public Trainee(long traineeId,String traineeName, String email, LocalDate dob) {
-		super();
-		this.traineeId=traineeId;
-		this.traineeName = traineeName;
-		this.email = email;
-		this.dob = dob;
-	}
-
-
-
-//	public Project getProject() {
-//		return project;
-//	}
-//
-//
-//
-//	public void setProject(Project project) {
-//		this.project = project;
-//	}
-
-
-
-	public long getTraineeId() {
-		return traineeId;
-	}
-
-	public void setTraineeId(long traineeId) {
-		this.traineeId = traineeId;
-	}
-
-	public String getTraineeName() {
-		return traineeName;
-	}
-
-	public void setTraineeName(String traineeName) {
-		this.traineeName = traineeName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public LocalDate getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Trainee [traineeId=" + traineeId + ", traineeName=" + traineeName + ", email=" + email + ", dob=" + dob
-				+  "]";
-	}
-
-
-
-	
-	
+		
 	
 	
 }

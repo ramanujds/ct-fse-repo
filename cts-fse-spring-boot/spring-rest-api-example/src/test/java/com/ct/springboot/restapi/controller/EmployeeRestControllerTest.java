@@ -60,7 +60,7 @@ class EmployeeRestControllerTest {
 		EmployeeDto empDto=new EmployeeDto(1,"Rahul", "rahul@yahoo.com", LocalDate.of(2000, 2, 10),10);
 		//empDto.setId(1001);
 		
-		when(service.addEmployee(Mockito.isA(Employee.class))).thenReturn(empDto);
+		when(service.addEmployee(Mockito.isA(EmployeeDto.class))).thenReturn(empDto);
 		mockMvc.perform(requestBuilder)
 								
 								.andExpect(content().json("{\"employeeName\":\"Rahul\",\"email\":\"rahul@yahoo.com\",\"dob\":\"2000-02-10\"}"))

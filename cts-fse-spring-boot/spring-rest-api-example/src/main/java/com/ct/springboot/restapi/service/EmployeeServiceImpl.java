@@ -3,17 +3,12 @@ package com.ct.springboot.restapi.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,9 +48,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public EmployeeDto addEmployee(Employee employee) {
+	public EmployeeDto addEmployee(EmployeeDto employeeDto) {
 		
-		//Employee employee=dtoToEmployee(employeeDto);
+		Employee employee=dtoToEmployee(employeeDto);
 		
 			if(repo.existsByEmail(employee.getEmail())) {
 				throw new EmployeeAlreadyExistsException("Employee with email ["+employee.getEmail()+"] Already Exists");

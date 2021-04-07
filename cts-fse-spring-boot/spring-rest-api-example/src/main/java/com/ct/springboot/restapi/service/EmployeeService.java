@@ -8,7 +8,7 @@ import com.ct.springboot.restapi.model.Employee;
 
 public interface EmployeeService {
 
-	public EmployeeDto addEmployee(Employee employee) ;
+	public EmployeeDto addEmployee(EmployeeDto employee) ;
 	public void deleteEmployee(int id) throws EmployeeNotFoundException;
 	public EmployeeDto getEmployeeById(int id) throws EmployeeNotFoundException;
 	public EmployeeDto getEmployeeByName(String employeeName) throws EmployeeNotFoundException ;

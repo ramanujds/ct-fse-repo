@@ -43,9 +43,7 @@ public class EmployeeRestController {
 	
 	
 	
-	@PostConstruct
-	public void init() {
-	}
+
 
 	@GetMapping("/employees/employee-name/{employeeName}")
 	public EmployeeDto getEmployee(@PathVariable String employeeName) throws EmployeeNotFoundException {
@@ -56,8 +54,9 @@ public class EmployeeRestController {
 
 	@PostMapping(value="/employees", consumes =  {"application/xml", "application/json"})
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public EmployeeDto addEmployee(@RequestBody Employee emp) {
-		return service.addEmployee(emp);
+	public EmployeeDto addEmployee(@RequestBody EmployeeDto empDto) {
+		
+		return service.addEmployee(empDto);
 	}
 
 	@GetMapping(value = "/employees", consumes = "application/json", produces = "application/json")

@@ -35,7 +35,7 @@
 
 * Step 1 - Download Sonar Cube 
 
-__set 'wrapper.java.command property' present in 'conf\wrapper.conf' value to 'java/bin path'__
+	* __set 'wrapper.java.command property' present in 'conf\wrapper.conf' value to 'java/bin path'__
 
 * Step 2 - Extract and run StartSonar.bat
 

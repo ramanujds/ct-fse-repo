@@ -1,0 +1,1 @@
+# H2 Propertiesspring:  datasource:    url: jdbc:h2:mem:empdb    password: password    username: sa    driver-class-name: org.h2.Driver      jpa:    generate-ddl: true    show-sql: true    database-platform: org.hibernate.dialect.H2Dialect    h2:    console:      enabled: true  data:    jpa:      repositories:        bootstrap-mode: default

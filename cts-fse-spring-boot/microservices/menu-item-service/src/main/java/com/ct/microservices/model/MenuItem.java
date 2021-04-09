@@ -23,5 +23,7 @@ public class MenuItem {
 	private double price;
 	@Transient
 	private int port;
+	@Transient
+	private RecipeMenu recipe;
 
 }

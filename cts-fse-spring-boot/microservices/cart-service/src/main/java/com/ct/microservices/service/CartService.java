@@ -36,6 +36,7 @@ public class CartService {
 		cartDetails.setItemName(menuItem.getItemName());
 		cartDetails.setPrice(menuItem.getPrice());
 		cartDetails.setMenuItemServicePort(menuItem.getPort());
+		cartDetails.setRecipe(menuItem.getRecipe());
 	}
 	
 private void addCouponToCart(CartDetails cartDetails,Coupon coupon) {

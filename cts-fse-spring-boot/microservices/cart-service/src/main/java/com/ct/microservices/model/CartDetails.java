@@ -18,6 +18,7 @@ public class CartDetails {
 	private double finalPrice;
 	private int couponServicePort;
 	private int menuItemServicePort;
+	private RecipeMenu recipe;
 	
 	
 }

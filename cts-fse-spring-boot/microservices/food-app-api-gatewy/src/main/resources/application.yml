@@ -4,12 +4,17 @@ spring:
 server:
   port: 8888
   
+
 zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 10000
+    
   routes:
     cart-service:
-      path: /my-cart/**
+      path: /cart/**
       service-id: cart-service
-      strip-prefix: true
+      strip-prefix: false
     
     menu-item-service:
       path: /menu-item/**

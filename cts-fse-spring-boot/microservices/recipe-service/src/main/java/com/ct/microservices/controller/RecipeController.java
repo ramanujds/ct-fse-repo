@@ -28,13 +28,7 @@ public class RecipeController {
 	@GetMapping(value = "/item/{itemName}", produces = "application/json")
 
 	public RecipeMenu getRecipe(@PathVariable String itemName) {
-//		try {
-//			Thread.sleep(10000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		int x=5/0;
+
 		return service.getRecipe(itemName);
 	}
 	

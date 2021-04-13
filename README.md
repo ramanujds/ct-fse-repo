@@ -83,3 +83,11 @@
 * Step 5 - Run as Maven Build with Goal as ** clean verify sonar:sonar -Dsonar.login=[token] **
 
 * Step 6 - visit localhost:9000
+
+## Important Docker Commands
+
+```bash
+
+docker container run -p 5000:8080 -e RDS_HOSTNAME=mysql -e RDS_PORT=3306 -e RDS_USERNAME=docker -e RDS_PASSWORD=password -e RDS_DB_NAME=mydb --network=cts-mysql-network --name truyum truyum:0.0.1-SNAPSHOT
+
+```

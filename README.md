@@ -87,7 +87,14 @@
 ## Important Docker Commands
 
 ```bash
+docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -e MYSQL_USER=docker -e MYSQL_PASSWORD=password -p 3308:3306 --name mysql mysql
+
+
+docker network create cts-mysql-network
 
 docker container run -p 5000:8080 -e RDS_HOSTNAME=mysql -e RDS_PORT=3306 -e RDS_USERNAME=docker -e RDS_PASSWORD=password -e RDS_DB_NAME=mydb --network=cts-mysql-network --name truyum truyum:0.0.1-SNAPSHOT
+
+
+docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -e MYSQL_USER=docker -e MYSQL_PASSWORD=password -p 3308:3306 --name mysql --volume mysql-db-volume:/var/lib/mysql --network=cts-mysql-network mysql
 
 ```

@@ -59,7 +59,7 @@ private AuthFilter filter;
 					.antMatchers("/admin/**").hasRole("ADMIN")
 					
 					.antMatchers("/user/**").hasAnyRole("USER","ADMIN")
-					
+					.antMatchers("/cart/**").hasAnyRole("USER","ADMIN")
 					.antMatchers("/public/**").permitAll()
 					.anyRequest()
 					.authenticated();

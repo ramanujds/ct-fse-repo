@@ -1,0 +1,111 @@
+version: '3.7'
+services:
+
+  eureka-server:
+    image: eureka-server:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - truyum-network
+
+  coupon-service:
+    image: coupon-service:0.0.1-SNAPSHOT
+    ports:
+     -  "5200:5200"
+    restart: always
+    environment:
+      RDS_HOSTNAME: mysql
+      RDS_PORT: 3306
+      RDS_DB_NAME: mydb
+      RDS_USERNAME: docker
+      RDS_PASSWORD: password
+    depends_on:
+      -  eureka-server
+      -  mysql
+    networks:
+      - truyum-network
+
+  # menu-item-service:
+  #   image: menu-item-service:0.0.1-SNAPSHOT
+  #   ports:
+  #     - "5100:5100"
+  #   restart: always
+  #   environment:
+  #     RDS_HOSTNAME: mysql
+  #     RDS_PORT: 3306
+  #     RDS_DB_NAME: mydb
+  #     RDS_USERNAME: docker
+  #     RDS_PASSWORD: password
+  #   depends_on:
+  #     - eureka-server
+  #     - recipe-service
+  #     - mysql
+  #   networks:
+  #     - truyum-network
+
+
+  # recipe-service:
+  #   image: recipe-service:0.0.1-SNAPSHOT
+  #   ports:
+  #     - "5300:5300"
+  #   restart: always
+
+  #   depends_on:
+  #     - eureka-server 
+  #   networks:
+  #     - truyum-network
+
+
+  # api-gateway:
+  #   image: food-app-api-gatewy:0.0.1-SNAPSHOT
+  #   ports:
+  #     - "8888:8888"
+  #   restart: always
+  #   environment:
+  #     RDS_HOSTNAME: mysql
+  #     RDS_PORT: 3306
+  #     RDS_DB_NAME: mydb
+  #     RDS_USERNAME: docker
+  #     RDS_PASSWORD: password
+  #   depends_on:
+  #     - eureka-server 
+  #   networks:
+  #     - truyum-network
+
+  # cart-service:
+  #   image: cart-service:0.0.1-SNAPSHOT
+  #   ports:
+  #     - "5000:5000"
+  #   restart: always
+  #   depends_on:
+  #     - eureka-server
+  #     - recipe-service
+  #     - mysql 
+  #     - coupon-service
+  #     - menu-item-service
+  #   networks:
+  #     - truyum-network
+
+  mysql:
+        image: mysql
+        #command: --default-authentication-plugin=mysql_native_password
+        ports:
+          - "3308:3306"
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_USER: docker
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: mydb
+        #  MYSQL_ROOT_HOST: 192.168.0.48/255.255.255.248
+        # volumes:
+        #   - mysql-db-volume:/var/lib/mysql
+        #   - ./init:/docker-entrypoint-initdb.d
+        networks:
+          - truyum-network
+
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  truyum-network:

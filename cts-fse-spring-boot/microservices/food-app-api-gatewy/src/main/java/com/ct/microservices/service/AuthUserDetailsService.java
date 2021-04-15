@@ -33,13 +33,15 @@ public class AuthUserDetailsService implements UserDetailsService {
 		return new AuthUserDetails(user);
 	}
 
-//	@PostConstruct
-//	public void addUser() {
-//		User user=new User(1, "admin", "12345", false, true, false, true, "ADMIN");
-//		User user2=new User(2, "harsh", "abcd", false, true, false, true, "USER");
-//		repo.save(user);
-//		repo.save(user2);
-//	}
+	@PostConstruct
+	public void addUser() {
+		if(repo.findAll().size()==0) {
+		User user=new User(1, "admin", "12345", false, true, false, true, "ADMIN");
+		User user2=new User(2, "harsh", "abcd", false, true, false, true, "USER");
+		repo.save(user);
+		repo.save(user2);
+		}
+	}
 	
 	
 }

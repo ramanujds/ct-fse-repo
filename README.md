@@ -98,3 +98,45 @@ docker container run -p 5000:8080 -e RDS_HOSTNAME=mysql -e RDS_PORT=3306 -e RDS_
 docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -e MYSQL_USER=docker -e MYSQL_PASSWORD=password -p 3308:3306 --name mysql --volume mysql-db-volume:/var/lib/mysql --network=cts-mysql-network mysql
 
 ```
+
+### Install google chrome
+
+```bash
+
+sudo curl https://intoli.com/install-google-chrome.sh | bash
+sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
+google-chrome – version && which google-chrome
+
+```
+
+### Install Java
+
+```bash
+sudo apt install default-jdk
+
+
+
+export JAVA_HOME=/opt/jdk1.8.0_282
+export JRE_HOME=/opt/jdk1.8.0_282/jre
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+
+```
+
+
+### S3-Bucket Public Access Policy
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::cde20ij014-app/*"
+        }
+    ]
+}
+
+```

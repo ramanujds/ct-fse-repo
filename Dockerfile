@@ -1,11 +1,6 @@
-# FROM anapsix/alpine-java
-# MAINTAINER Ramanuj
-# COPY covid-info-app.jar /home/covid-info-app.jar
-# EXPOSE 8500
-# CMD ["java", "-jar", "covid-info-app.jar"] 
 
 FROM anapsix/alpine-java
 WORKDIR /
-ADD covid-info-app.jar covid-info-app.jar
-EXPOSE 8500
-CMD java -jar covid-info-app.jar
+ADD spring-boot-simple-app-0.0.1-SNAPSHOT.jar spring-boot-simple-app-0.0.1-SNAPSHOT.jar
+EXPOSE 5000
+CMD java -jar spring-boot-simple-app-0.0.1-SNAPSHOT.jar

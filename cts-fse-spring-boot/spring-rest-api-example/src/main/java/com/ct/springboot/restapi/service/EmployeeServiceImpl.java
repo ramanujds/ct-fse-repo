@@ -18,6 +18,7 @@ import com.ct.springboot.restapi.exception.EmployeeNotFoundException;
 import com.ct.springboot.restapi.model.Employee;
 import com.ct.springboot.restapi.repository.EmployeeRepo;
 @Service
+
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
@@ -25,6 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	Logger logger=LoggerFactory.getLogger(EmployeeServiceImpl.class);
 	
+	@Transactional
 	public Employee dtoToEmployee(EmployeeDto employeeDto) {
 		Employee emp=new Employee();
 		emp.setId(employeeDto.getId());
@@ -34,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return emp;
 	}
 	
+	@Transactional
 	public EmployeeDto employeeToDto(Employee employee) {
 		EmployeeDto empDto=new EmployeeDto();
 		empDto.setId(employee.getId());
@@ -66,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteEmployee(int id) throws EmployeeNotFoundException {
 		if(!repo.existsById(id)) {
 			throw new EmployeeNotFoundException("Employee with ID ["+id+"] Not Found");
@@ -74,6 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public EmployeeDto getEmployeeById(int id) throws EmployeeNotFoundException {
 		
 		if(!repo.existsById(id)) {
@@ -85,6 +90,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public EmployeeDto getEmployeeByName(String employeeName) throws EmployeeNotFoundException {
 		
 		
@@ -96,6 +102,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public EmployeeDto updateEmployee(EmployeeDto employeeDto) throws EmployeeNotFoundException {
 		if(!repo.existsById(employeeDto.getId())) {
 			throw new EmployeeNotFoundException("Employee with ID ["+employeeDto.getId()+"] Not Found");
@@ -106,6 +113,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public List<EmployeeDto> getAllEmployees() {
 		// TODO Auto-generated method stub
 		List<EmployeeDto> employeeDtos=new ArrayList<EmployeeDto>();

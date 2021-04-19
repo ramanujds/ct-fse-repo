@@ -1,0 +1,10 @@
+Create RDS -> MySql DB
+Create App
+Add Env
+Deploy Jar
+Configure -> Software -> Edit
+RDS_HOSTNAME.....
+......
+Copy Security Group ID
+Configure Inbound Rule
+-> MYSQL/Aurora [Security Group ID]

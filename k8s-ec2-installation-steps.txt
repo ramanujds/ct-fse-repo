@@ -1,0 +1,23 @@
+Installing Kubectl -
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+Installing Minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+
+Starting the minikube -
+
+sudo su -
+minikube start --vm-driver=none
+
+For Error - Exiting due to GUEST_MISSING_CONNTRACK: Sorry, Kubernetes 1.20.2 requires conntrack to be installed in root's path
+
+sudo yum install -y conntrack
+
+minikube start --vm-driver=none
+minikube status

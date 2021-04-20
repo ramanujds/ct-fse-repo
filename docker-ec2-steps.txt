@@ -31,3 +31,6 @@ Transferring files from Local Machine to EC2:
 
 How to build images from the jar file:
 Follow steps from docker-repository
+
+* Modify the inbound rule and add All Port Range dor All Protocol to All
+* Use http rather https

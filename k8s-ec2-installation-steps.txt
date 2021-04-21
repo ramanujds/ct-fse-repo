@@ -21,3 +21,25 @@ sudo yum install -y conntrack
 
 minikube start --vm-driver=none
 minikube status
+
+
+
+
+Creating a Deployment
+kubectl create deployment covid-info --image=ram1uj/covid-info
+
+Exposing the Deployment
+kubectl expose deployment covid-info --type=LoadBalancer --port=80
+
+Getting the services :
+kubectl get services
+
+** Find the port exposed by the service and use the same port with your instance's ip address to browse the application
+*** Also make sure that you have added the inbound rule to allow all the requests
+
+Scaling Applications -
+kubectl scale deployment covid-info --replicas=3
+
+Pushing a new Release :
+kubectl set image deployment covid-info covid-info=ram1uj/covid-info:0.0.1
+

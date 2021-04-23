@@ -1,0 +1,67 @@
+#application: ''
+#cart-service: ''
+#connect-timeout-millis: 10000
+#coupon-service: ''
+#host: ''
+#menu-item-service: ''
+#name: api-gateway
+#path:
+#- /cart/**
+#- /menu-item/**
+#- /coupons/**
+#- /recipes/**
+#port: 8888
+#recipe-service: ''
+#routes: ''
+#server: ''
+#service-id:
+#- cart-service
+#- menu-item-service
+#- coupon-service
+#- recipe-service
+#socket-timeout-millis: 10000
+#spring: ''
+#strip-prefix: false
+#zuul: ''
+
+spring:
+  application:
+    name: api-gateway
+    
+server:
+  port: 8888
+  
+zuul:
+  routes:
+    menu-item-service:
+      path: /menu-item/**
+      service-id: menu-item-service
+      strip-prefix: false
+      
+#ribbon:
+#  eureka:
+#    enabled: false
+    
+#eureka:
+#  client:
+#    fetch-registry: true
+#    coupon-service:
+#      path: /coupons/**
+#      service-id: coupon-service
+#      strip-prefix: false
+#      
+#      
+#    recipe-service:
+#      path: /recipes/**
+#      service-id: recipe-service
+#      strip-prefix: fals
+#     
+#    account-service:
+#      path: /account-service/**
+#      service-id: account-service
+#      strip-prefix: false
+#    
+#    loan-service:
+#      path: /loan-service/**
+#      service-id: loan-service
+#      strip-prefix: false

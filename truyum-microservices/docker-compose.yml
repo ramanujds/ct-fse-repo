@@ -1,0 +1,65 @@
+version: '3.7'
+services: 
+    eureka-server:
+        image: abhi0112/truyum-menuitem-euraka-server
+        ports:
+            - "8761:8761"
+        restart: always
+        networks:
+            - truyum-network
+    menu-item-service:
+        image: abhi0112/truyum-menuitem-service
+        ports: 
+            - "8081:8081"
+        restart: always
+        environment:
+            RDS_HOSTNAME: mysql-server
+            RDS_PORT: 3306
+            RDS_DB_NAME: mydb
+            RDS_USERNAME: docker
+            RDS_PASSWORD: password
+        depends_on:
+            -  eureka-server
+            -  mysql-server
+        networks:
+            - truyum-network
+    
+ 
+    api-gatway:
+        image: abhi0112/truyum-api-gatway
+        ports: 
+            - "8082:8082"
+        restart: always
+        environment:
+            RDS_HOSTNAME: mysql-server
+            RDS_PORT: 3306
+            RDS_DB_NAME: mydb
+            RDS_USERNAME: docker
+            RDS_PASSWORD: password
+        depends_on:
+            -  eureka-server
+            -  mysql-server
+        networks:
+            - truyum-network
+    
+    mysql-server:
+        image: mysql:5.7
+        ports:
+          - "3308:3306"
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_USER: docker
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: mydb
+        networks:
+          - truyum-network  
+        volumes:
+            - mysql-database-data-volume:/var/lib/mysql
+
+# Volumes
+volumes:
+  mysql-database-data-volume:  
+# Networks to be created to facilitate communication between containers
+networks:
+    truyum-network:       

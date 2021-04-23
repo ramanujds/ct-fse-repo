@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: menu-item-service
+  name: menu-item-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: menu-item-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/truyum-network: "true"
+        io.kompose.service: menu-item-service
+    spec:
+      containers:
+      - env:
+        - name: RDS_DB_NAME
+          value: mydb
+        - name: RDS_HOSTNAME
+          value: 3.14.81.114
+        - name: RDS_PASSWORD
+          value: password
+        - name: RDS_PORT
+          value: "30269"
+        - name: RDS_USERNAME
+          value: docker
+        image: abhi0112/truyum-menuitem-service
+        imagePullPolicy: ""
+        name: menu-item-service
+        ports:
+        - containerPort: 8081
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

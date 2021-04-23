@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql-server
+  name: mysql-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mysql-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/truyum-network: "true"
+        io.kompose.service: mysql-server
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: mydb
+        - name: MYSQL_PASSWORD
+          value: password
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_USER
+          value: docker
+        image: mysql:5.7
+        imagePullPolicy: ""
+        name: mysql-server
+        args: 
+          - "--ignore-db-dir=lost+found" #CHANGE
+        ports:
+        - containerPort: 3306
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-database-data-volume
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: mysql-database-data-volume
+        persistentVolumeClaim:
+          claimName: mysql-database-data-volume
+status: {}

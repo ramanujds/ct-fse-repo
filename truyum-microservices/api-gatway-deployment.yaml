@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gatway
+  name: api-gatway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api-gatway
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/truyum-network: "true"
+        io.kompose.service: api-gatway
+    spec:
+      containers:
+      - env:
+        - name: RDS_DB_NAME
+          value: mydb
+        - name: RDS_HOSTNAME
+          value: mysql-server
+        - name: RDS_PASSWORD
+          value: password
+        - name: RDS_PORT
+          value: "3306"
+        - name: RDS_USERNAME
+          value: docker
+        image: abhi0112/truyum-api-gatway
+        imagePullPolicy: ""
+        name: api-gatway
+        ports:
+        - containerPort: 8082
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

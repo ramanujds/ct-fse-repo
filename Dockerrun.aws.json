@@ -1,0 +1,12 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image": {
+		"Name": "ram1uj/covid-info",
+		"Update": "true"
+	},
+	"Ports": [
+		{
+			"ContainerPort": "80"
+		}
+	]
+}

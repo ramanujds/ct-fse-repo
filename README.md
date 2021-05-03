@@ -208,6 +208,6 @@ server.port=7000
 server.error.whitelabel.enabled=false
 
 
-cart-service.uri = http://${cart-service-host:localhost}:${cart-service-host:localhost}
+cart-service.uri = http://${cart-service-host:localhost}:${cart-service-port:5000}
 
 ```

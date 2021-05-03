@@ -153,16 +153,15 @@ public class FoodAppController implements ErrorController {
 	@Autowired
 	RestTemplate rt;
 	
-	@Value("${cart-service.port}")
-	private String port;
+	@Value("${cart-service.uri}")
+	private String uri;
 	
-	@Value("${cart-service.host}")
-	private String host;
+	
 	
 	@GetMapping("/get-food-info")
 	public String getFoodInfo(@RequestParam("item-id") int itemId,@RequestParam("coupon-code") String couponCode, Model m) {
 		try {
-		CartDetails cartEntity=rt.getForObject("http://"+host+":"+port+"/cart/item/"+itemId+"/coupon/"+couponCode, CartDetails.class);
+		CartDetails cartEntity=rt.getForObject(uri+"/cart/item/"+itemId+"/coupon/"+couponCode, CartDetails.class);
 		
 		}
 		catch (HttpClientErrorException e) {
@@ -195,5 +194,20 @@ public class FoodAppController implements ErrorController {
 	}
 	
 }
+
+
+```
+
+
+### Application.properties
+
+
+```properties
+
+server.port=7000
+server.error.whitelabel.enabled=false
+
+
+cart-service.uri = http://${cart-service-host:localhost}:${cart-service-host:localhost}
 
 ```

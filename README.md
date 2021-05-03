@@ -140,3 +140,60 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 }
 
 ```
+
+
+### Error Handling 
+
+```java
+
+
+@Controller
+public class FoodAppController implements ErrorController {
+
+	@Autowired
+	RestTemplate rt;
+	
+	@Value("${cart-service.port}")
+	private String port;
+	
+	@Value("${cart-service.host}")
+	private String host;
+	
+	@GetMapping("/get-food-info")
+	public String getFoodInfo(@RequestParam("item-id") int itemId,@RequestParam("coupon-code") String couponCode, Model m) {
+		try {
+		CartDetails cartEntity=rt.getForObject("http://"+host+":"+port+"/cart/item/"+itemId+"/coupon/"+couponCode, CartDetails.class);
+		
+		}
+		catch (HttpClientErrorException e) {
+			m.addAttribute("code",e.getRawStatusCode());
+			m.addAttribute("message", e.getStatusCode());
+			return "error";
+		}
+		return "show-cart.jsp";
+	}
+	
+	
+	
+	@PostMapping("/login")
+	public String login(@ModelAttribute Credentials cred, HttpSession session) {
+		AuthToken token=rt.postForObject("http://localhost:5000/public/authenticate/", cred, AuthToken.class);
+		session.setAttribute("token", token.getJwtToken());
+		return "home.jsp";
+	}
+	
+	@Override
+	public String getErrorPath() {
+		
+		return "error";
+	}
+	
+	@GetMapping("/error")
+	public String getErrorPage(HttpServletRequest request) {
+		
+		return "error.jsp";
+	}
+	
+}
+
+```

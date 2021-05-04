@@ -18,7 +18,7 @@ public class Coupon {
 	private String couponCode;
 	private double discount;
 	private double maxDiscount;
-	private int port;
+
 	
 	
 }

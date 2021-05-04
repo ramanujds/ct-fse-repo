@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
+
 
 @SpringBootApplication
-//@EnableEurekaClient
-//@EnableZuulProxy
+@EnableEurekaClient
+@EnableZuulProxy
 public class FoodAppApiGatewyApplication {
 
 	public static void main(String[] args) {

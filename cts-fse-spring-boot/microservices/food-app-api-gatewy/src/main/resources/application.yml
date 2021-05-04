@@ -1,8 +1,10 @@
-spring:
-  application:
-    name: api-gateway
+
+
+
+
 server:
   port: 8888
+
   
 
 zuul:
@@ -27,7 +29,4 @@ zuul:
       strip-prefix: false
       
       
-    recipe-service:
-      path: /recipes/**
-      service-id: recipe-service
-      strip-prefix: false
+    

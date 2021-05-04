@@ -17,7 +17,6 @@ public class MenuItem {
 	private long menuItemId;
 	private String itemName;
 	private double price;
-	private int port;
-	private RecipeMenu recipe;
+
 	
 }

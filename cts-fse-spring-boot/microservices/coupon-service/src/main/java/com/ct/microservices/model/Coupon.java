@@ -24,8 +24,7 @@ public class Coupon {
 	private double discount;
 	private double maxDiscount;
 	
-	@Transient
-	private int port;
+	
 	
 	
 }

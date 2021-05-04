@@ -19,14 +19,11 @@ public class CouponController {
 	@Autowired
 	CouponRepo repo;
 	
-	@Autowired
-	Environment env;
+	
 	
 	@GetMapping("/code/{couponCode}")
 	public Coupon getCoupon(@PathVariable String couponCode) {
 		Coupon coupon= repo.findByCouponCode(couponCode);
-		int port=Integer.parseInt(env.getProperty("local.server.port"));
-		coupon.setPort(port);
 		return coupon;
 	}
 	

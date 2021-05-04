@@ -16,9 +16,5 @@ public class CartDetails {
 	private double discount;
 	private double maxDiscount;
 	private double finalPrice;
-	private int couponServicePort;
-	private int menuItemServicePort;
-	private RecipeMenu recipe;
-	
 	
 }

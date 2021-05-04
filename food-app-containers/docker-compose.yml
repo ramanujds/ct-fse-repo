@@ -1,0 +1,38 @@
+version: '3.7'
+services: 
+   
+    menu-item-service:
+        image: ram1uj/menu-item-service
+        ports: 
+            - "5100:5100"
+        restart: always
+       
+        networks:
+            - app-network
+    
+ 
+    coupon-service:
+        image: ram1uj/coupon-service
+        ports: 
+            - "5200:5200"
+        restart: always
+
+        networks:
+            - app-network
+
+    cart-service:
+        image: ram1uj/cart-service
+        ports: 
+            - "5000:5000"
+        restart: always
+        environment:
+            coupon_service_host: coupon-service
+            menu_item_service_host: menu-item-service
+            coupon_service_port: 5200
+            menu_item_service_port: 5100
+        networks:
+            - app-network
+ 
+# Networks to be created to facilitate communication between containers
+networks:
+    app-network:  

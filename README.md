@@ -234,7 +234,6 @@ phases:
     - echo Build started on `date`
     - echo $IMAGE_URI
     - mvn clean package -Ddockerfile.skip
-    - docker login --username AWS --password-stdin public.ecr.aws/h4h0t5v0
     - docker build --tag $IMAGE_URI .
   post_build:
     commands:

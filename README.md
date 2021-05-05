@@ -211,3 +211,72 @@ server.error.whitelabel.enabled=false
 cart-service.uri = http://${cart-service-host:localhost}:${cart-service-port:5000}
 
 ```
+
+
+### buildspec.yaml
+
+```yml
+
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+    - echo Logging in to Amazon ECR...
+    - aws --version
+    - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+    - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+    - IMAGE_URI=${REPOSITORY_URI}:${TAG}
+  build:
+    commands:
+    - echo Build started on `date`
+    - echo $IMAGE_URI
+    - mvn clean package -Ddockerfile.skip
+    - docker login --username AWS --password-stdin public.ecr.aws/h4h0t5v0
+    - docker build --tag $IMAGE_URI .
+  post_build:
+    commands:
+    - printenv
+    - echo Build completed on `date`
+    - echo $(docker images)
+    - echo Pushing docker image
+    - docker push $IMAGE_URI
+    - echo push completed
+    - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $IMAGE_URI > imagedefinitions.json
+artifacts:
+  files:
+  - imagedefinitions.json
+
+```
+
+
+### appspec.yaml
+
+```yml
+
+version: 1.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-2:234825976347:task-definition/simple-cicd-api-task-definition:4"
+        LoadBalancerInfo:
+          ContainerName: "simple-cicd-api"
+          ContainerPort: "5000"
+        PlatformVersion: "LATEST"
+
+```
+
+### Dockerfile
+
+```dockerfile
+
+FROM anapsix/alpine-java
+WORKDIR /
+ADD target/simple-cicd-api-0.0.1-SNAPSHOT.jar simple-cicd-api.jar
+EXPOSE 5000
+CMD java -jar simple-cicd-api.jar
+
+```

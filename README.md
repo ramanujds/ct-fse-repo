@@ -272,7 +272,7 @@ Resources:
 
 ```dockerfile
 
-FROM anapsix/alpine-java
+FROM openjdk:8-jdk-alpine
 WORKDIR /
 ADD target/simple-cicd-api-0.0.1-SNAPSHOT.jar simple-cicd-api.jar
 EXPOSE 5000
